@@ -9,6 +9,8 @@ const path = require('path');
 const authRoutes = require('./routes/authRoutes');
 const postRoutes = require('./routes/postRoutes');
 const userRoutes = require('./routes/userRoutes');
+console.log('Debug: Server starting...');
+console.log('Debug: Current directory:', __dirname);
 
 const app = express();
 
@@ -26,6 +28,7 @@ app.use(fileUpload({
   createParentPath: true
 }));
 
+
 // Logging middleware
 app.use((req, res, next) => {
   console.log(`${new Date().toISOString()} - ${req.method} ${req.originalUrl}`);
@@ -34,6 +37,7 @@ app.use((req, res, next) => {
 
 // Routes
 app.use('/api/auth', authRoutes);
+console.log('Debug: Auth routes mounted at /api/auth');
 app.use('/api/posts', postRoutes);
 app.use('/api/users', userRoutes);
 
@@ -44,6 +48,12 @@ app.get('/api/health', (req, res) => {
     database: mongoose.connection.readyState === 1 ? 'Connected' : 'Disconnected',
     timestamp: new Date() 
   });
+});
+
+
+app.post('/api/test', (req, res) => {
+  console.log('Test endpoint hit');
+  res.json({ success: true });
 });
 
 // Error handling
