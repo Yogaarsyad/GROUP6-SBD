@@ -1,0 +1,25 @@
+services:
+  backend:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - MONGO_URI=mongodb+srv://mongodb:lWtveG4TczV1iiYL@cluster0.qcuqc4q.mongodb.net/sbd-project?retryWrites=true&w=majority&appName=Cluster0
+    depends_on:
+      - mongo
+    volumes:
+      - .:/app
+    restart: always
+    dns:
+      - 8.8.8.8
+
+
+  mongo:
+    image: mongo:6
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
