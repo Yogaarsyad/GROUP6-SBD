@@ -1,24 +1,69 @@
-const Like = require('../models/Like');
+const Post = require('../models/Post');
 
-// POST a like
-exports.createLike = async (req, res) => {
-  const { postId, userId } = req.body;
-
+exports.likePost = async (req, res) => {
   try {
-    const newLike = new Like({ postId, userId });
-    await newLike.save();
-    res.status(201).json(newLike);
+    const postId = req.params.id;
+    const userId = req.user._id;
+
+    const post = await Post.findByIdAndUpdate(
+      postId,
+      {
+        $addToSet: { likes: userId },
+        $inc: { likeCount: 1 }
+      },
+      { new: true }
+    ).populate('likes', 'username profilePic');
+
+    if (!post) {
+      return res.status(404).json({
+        success: false,
+        error: 'Post not found'
+      });
+    }
+
+    res.json({
+      success: true,
+      post
+    });
   } catch (err) {
-    res.status(400).json({ message: 'Error liking post', error: err });
+    res.status(500).json({
+      success: false,
+      error: err.message
+    });
   }
 };
 
-// GET all likes for a post
-exports.getLikesByPost = async (req, res) => {
+exports.unlikePost = async (req, res) => {
   try {
-    const likes = await Like.find({ postId: req.params.postId });
-    res.json(likes);
+    const postId = req.params.id;
+    const userId = req.user._id;
+
+    const post = await Post.findByIdAndUpdate(
+      postId,
+      {
+        $pull: { likes: userId },
+        $inc: { likeCount: -1 }
+      },
+      { new: true }
+    );
+
+    if (!post) {
+      return res.status(404).json({
+        success: false,
+        error: 'Post not found'
+      });
+    }
+
+    res.json({
+      success: true,
+      message: 'Post unliked successfully'
+    });
   } catch (err) {
-    res.status(400).json({ message: 'Error fetching likes', error: err });
+    res.status(500).json({
+      success: false,
+      error: err.message
+    });
   }
 };
+
+module.exports = exports;
