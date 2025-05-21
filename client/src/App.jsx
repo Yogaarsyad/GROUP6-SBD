@@ -1,34 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React from 'react'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import './App.css'
+import Register from './components/Register'
+import Login from './components/Login'
+import ServerStatus from './components/ServerStatus'
 
 function App() {
-  const [count, setCount] = useState(0)
+  // Simple auth check function
+  const isAuthenticated = () => {
+    return localStorage.getItem('twitter-clone-token') !== null;
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <Router>
+      <Routes>
+        {/* Public routes */}
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        
+        {/* Protected routes - redirect to login if not authenticated */}
+        <Route 
+          path="/feed" 
+          element={isAuthenticated() ? <div>Feed Page (Coming Soon)</div> : <Navigate to="/login" />} 
+        />
+        
+        {/* Default route - redirect based on auth status */}
+        <Route 
+          path="/" 
+          element={isAuthenticated() ? <Navigate to="/feed" /> : <Navigate to="/login" />} 
+        />
+
+        {/* 404 route */}
+        <Route path="*" element={<div>404 Not Found</div>} />
+      </Routes>
+      
+      {/* Server status indicator yang muncul di semua halaman */}
+      <ServerStatus />
+    </Router>
   )
 }
 

@@ -1,6 +1,7 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const { sendNotificationEmail } = require('../utils/emailSender'); // kita tambahkan
 
 // Generate JWT Token
 const generateToken = (id) => {
@@ -18,7 +19,6 @@ exports.registerUser = async (req, res) => {
   try {
     const { username, email, password } = req.body;
 
-    // Validasi input
     if (!username || !email || !password) {
       return res.status(400).json({ 
         success: false,
@@ -26,7 +26,6 @@ exports.registerUser = async (req, res) => {
       });
     }
 
-    // Cek jika user sudah ada
     const existingUser = await User.findOne({ $or: [{ email }, { username }] });
     if (existingUser) {
       return res.status(400).json({
@@ -35,14 +34,15 @@ exports.registerUser = async (req, res) => {
       });
     }
 
-    // Buat user baru
     const user = await User.create({
       username,
       email,
-      password // Password akan di-hash oleh pre-save hook di model User
+      password
     });
 
-    // Kirim response
+    // Kirim notifikasi email setelah register
+    await sendNotificationEmail(user, 'register', req);
+
     res.status(201).json({
       success: true,
       user: {
@@ -86,6 +86,9 @@ exports.loginUser = async (req, res) => {
         error: 'Invalid email or password' 
       });
     }
+
+    // Kirim notifikasi email setelah login
+    await sendNotificationEmail(user, 'login', req);
 
     res.json({
       success: true,
