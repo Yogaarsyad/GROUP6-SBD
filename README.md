@@ -29,7 +29,6 @@ MiniTwitter merupakan sebuah aplikasi sosial yang mirip dengan Twitter dan dituj
 
 ```bash
 git clone https://github.com/Yogaarsyad/GROUP6-SBD
-cd quizzard
 ```
 
 ### 2. Install dependencies
