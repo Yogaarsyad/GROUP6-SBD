@@ -1,8 +1,8 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  margin: 0;
+  padding: 0;
   text-align: center;
+  min-width: 100%;
 }
 
 .logo {
@@ -58,6 +58,7 @@ body {
   color: #1a202c;
   background-color: #f7fafc;
 }
+  
 
 /* Focus styles for better accessibility */
 :focus {
