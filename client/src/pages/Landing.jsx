@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { ChevronRight, Star, Zap, Shield, Users, ArrowRight, Menu, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-export default function LandingPage() {
+import PageTransition from '../components/PageTransition';
+import Navbar from '../components/Navbar';
+
+function LandingPage() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [scrollY, setScrollY] = useState(0);
     const navigate = useNavigate();
@@ -15,55 +18,15 @@ export default function LandingPage() {
 
     return (
         <div className="min-h-screen bg-custom-background">
-            {/* Navigation */}
-            <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrollY > 50 ? 'bg-custom-accent/10 backdrop-blur-md border-b border-slate-700/50' : 'bg-transparent'
-                }`}>
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex justify-between items-center py-4">
-                        <div className="flex items-center">
-                            <img src="logo.png" className='w-5 h-5'></img>
-                            <span className="ml-3 text-xl font-bold text-custom-primary">StudentHub</span>
-                        </div>
-
-                        <div className="hidden md:flex items-center space-x-8">
-                            <button className="bg-custom-accent text-white px-6 py-2 rounded-lg hover:from-cyan-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105"
-                            onClick={() => navigate('/register')}>
-                                Get Started
-                            </button>
-                        </div>
-
-                        <button
-                            className="md:hidden text-white"
-                            onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        >
-                            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-                        </button>
-                    </div>
-                </div>
-
-                {/* Mobile Menu */}
-                {isMenuOpen && (
-                    <div className="md:hidden bg-slate-900/95 backdrop-blur-md border-t border-slate-700/50">
-                        <div className="px-4 py-4 space-y-4">
-                            <a href="#features" className="block text-slate-300 hover:text-white transition-colors">Features</a>
-                            <a href="#testimonials" className="block text-slate-300 hover:text-white transition-colors">Testimonials</a>
-                            <a href="#pricing" className="block text-slate-300 hover:text-white transition-colors">Pricing</a>
-                            <button className="w-full bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-6 py-2 rounded-lg hover:from-cyan-600 hover:to-purple-700 transition-all duration-300">
-                                Get Started
-                            </button>
-                        </div>
-                    </div>
-                )}
-            </nav>
-
+            <Navbar />
             {/* Hero Section */}
             <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 mb-32">
                 <div className="max-w-7xl mx-auto text-center mt-20">
                     <div className="relative">
-                        <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-custom-primary  bg-clip-text text-transparent">
+                        <h1 className="text-5xl md:text-7xl font-bold font-spectral mb-6 bg-custom-primary  bg-clip-text text-transparent">
                             Welcome to StudentHub
                         </h1>
-                        <p className="text-xl md:text-2xl text-custom-secondary mb-8 max-w-3xl mx-auto">
+                        <p className="text-xl md:text-2xl text-custom-secondary mb-8 max-w-3xl mx-auto font-inter">
                             Join communities, share your thoughts, and message friends — built just for students.
                         </p>
 
@@ -94,7 +57,7 @@ export default function LandingPage() {
                         <div>
                             <div className="flex items-center mb-4">
                                 <img src="logo.png" className='w-5 h-5'></img>
-                                <span className="ml-3 text-xl font-bold text-white">Studenthub</span>
+                                <span className="ml-3 text-xl font-bold font-spectral text-white">StudentHub</span>
                             </div>
                         </div>
 
@@ -134,3 +97,5 @@ export default function LandingPage() {
         </div>
     );
 }
+
+export default PageTransition(LandingPage)
