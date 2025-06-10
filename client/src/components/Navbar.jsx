@@ -1,6 +1,6 @@
 // components/Navbar.jsx
 import React, { useState, useEffect } from 'react';
-import { Menu, X, LogOut } from 'lucide-react';
+import { Menu, X, LogOut, MessageCircle, CircleUser, House} from 'lucide-react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 
 function Navbar() {
@@ -40,9 +40,36 @@ function Navbar() {
                         </div>
                     </Link>
 
-                    <div className="hidden md:flex items-center space-x-8">
+                    <div className="hidden md:flex items-center space-x-1">
                         {currentPath === '/home' && (
-                            <button className="bg-custom-accent text-white px-6 py-2 rounded-lg hover:from-cyan-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 hover:bg-red-500"
+                            <button className="bg-transparent text-white px-6 py-2 border-none hover:bg-custom-accent/20"
+                                onClick={HandleLogOut}
+                            >
+                                <House className='text-white' />
+                            </button>
+
+                        )}
+
+                        {currentPath === '/home' && (
+                            <button className="bg-transparent text-white px-6 py-2 border-none hover:bg-custom-accent/20"
+                                onClick={HandleLogOut}
+                            >
+                                <MessageCircle className='text-white' />
+                            </button>
+
+                        )}
+
+                        {currentPath === '/home' && (
+                            <button className="bg-transparent text-white px-6 py-2 border-none hover:bg-custom-accent/20"
+                                onClick={HandleLogOut}
+                            >
+                                <CircleUser className='text-white' />
+                            </button>
+
+                        )}
+
+                                                {currentPath === '/home' && (
+                            <button className="bg-transparent text-white px-6 py-2 rounded-lg hover:from-cyan-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 hover:bg-red-500"
                                 onClick={HandleLogOut}
                             >
                                 <LogOut className='text-white' />
@@ -50,6 +77,7 @@ function Navbar() {
 
                         )}
                     </div>
+
 
                     <button
                         className="md:hidden text-white"
