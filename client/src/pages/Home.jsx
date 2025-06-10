@@ -10,6 +10,7 @@ function Home() {
     return (
         <div className="min-h-screen bg-custom-background">
             <Navbar></Navbar>
+            <div className='text-white h-50 absolute top-1/2 left-1/2'>Coming soon..</div>
         </div>
     );
 }
