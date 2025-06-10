@@ -7,10 +7,6 @@ export default function LandingPage() {
     const [scrollY, setScrollY] = useState(0);
     const navigate = useNavigate();
 
-    function registerClick() {
-        navigate('/register');
-    }
-
     useEffect(() => {
         const handleScroll = () => setScrollY(window.scrollY);
         window.addEventListener('scroll', handleScroll);
@@ -30,8 +26,8 @@ export default function LandingPage() {
                         </div>
 
                         <div className="hidden md:flex items-center space-x-8">
-                            <button className="bg-custom-accent text-white px-6 py-2 rounded-lg hover:from-cyan-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105" 
-                                onClick={registerClick}>
+                            <button className="bg-custom-accent text-white px-6 py-2 rounded-lg hover:from-cyan-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105"
+                            onClick={() => navigate('/register')}>
                                 Get Started
                             </button>
                         </div>
@@ -73,12 +69,12 @@ export default function LandingPage() {
 
                         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
                             <button className="group bg-custom-accent text-custom-primary px-8 py-4 rounded-xl text-lg font-semibold hover:from-cyan-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 flex items-center animate-pulse"
-                            onClick={() => navigate('/register')}>
+                                onClick={() => navigate('/register')}>
                                 Register
                                 <ChevronRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                             </button>
                             <button className="px-8 py-4 border border-slate-600 text-white rounded-xl text-lg font-semibold hover:bg-slate-800 transition-all duration-300 transform hover:scale-105"
-                            onClick={() => navigate('/login')}>
+                                onClick={() => navigate('/login')}>
                                 Log in
                             </button>
                         </div>
