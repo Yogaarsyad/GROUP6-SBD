@@ -1,10 +1,17 @@
 # Sbd-project
 
-## MiniTwitter: Tempat Curhat Online Mahasiswa UI
+## StudentHub: Tempat Curhat Online Mahasiswa
 Dalam era digital yang terus berkembang, permintaan untuk platform komunikasi yang cepat dan efektif di lingkungan pendidikan semakin meningkat. Saat ini, mahasiswa tidak hanya memerlukan ruang untuk belajar, tetapi juga ruang yang dapat digunakan untuk berbagi secara fleksibel dan mudah diakses.
 
-MiniTwitter merupakan sebuah aplikasi sosial yang mirip dengan Twitter dan ditujukan untuk mahasiswa Universitas Indonesia. Nantinya mahasiswa dapat melakukan Registrasi, Login, dan membuat tulisan singkat untuk membagikan informasi atau pengalaman mereka terkait kehidupan di kampus.
+StudentHub adalah platform interaktif untuk mahasiswa berbagi cerita, ide, dan pengalaman melalui post yang bisa di-reply, like, dan repost. Mahasiswa juga dapat bergabung dengan berbagai komunitas sesuai minat, berdiskusi, dan membangun relasi di sana. Fitur messaging dan group messaging memudahkan komunikasi langsung antar pengguna maupun dalam kelompok, menjadikan StudentHub tempat yang ideal untuk koneksi, kolaborasi, dan komunitas kampus yang dinamis.
 
+## 👥 Members
+
+- Christover Angelo - 2306220343
+- Filaga Tifira Muthi -  2306208445
+- Jesie Tenardi - 2306162002
+- Syahmi Hamdani - 2306220532
+- Tri Yoga Arsyad - 2306161920
 
 ## 📦 Tech Stack
 ### ⚙️ Frontend
