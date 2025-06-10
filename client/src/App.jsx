@@ -6,11 +6,12 @@ import Login from './pages/Login'
 import ServerStatus from './pages/ServerStatus'
 import Landing from './pages/Landing'
 import { AnimatePresence } from 'framer-motion'
+import Home from './pages/Home'
 
 function App() {
   // Simple auth check function
   const isAuthenticated = () => {
-    return localStorage.getItem('twitter-clone-token') !== null;
+    return localStorage.getItem('studenthub-token') !== null;
   };
 
   const location = useLocation();
@@ -21,20 +22,22 @@ function App() {
         <Routes location={location} key={location.pathname}>
 
           {/* Public routes */}
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/" element={<Landing />} />
-
-          {/* Protected routes - redirect to login if not authenticated */}
           <Route
-            path="/feed"
-            element={isAuthenticated() ? <Navigate to="/" /> : <Navigate to="/login" />}
+            path="/Register"
+            element={isAuthenticated() ? <Navigate to="/home" /> : <Register />}
           />
-
-          {/* Default route - redirect based on auth status */}
+          <Route
+            path="/login"
+            element={isAuthenticated() ? <Navigate to="/home" /> : <Login />}
+          />
           <Route
             path="/"
-            element={isAuthenticated() ? <Navigate to="/feed" /> : <Navigate to="/login" />}
+            element={isAuthenticated() ? <Navigate to="/home" /> : <Landing />}
+          />
+          {/* Protected routes - redirect to login if not authenticated */}
+          <Route
+            path="/home"
+            element={isAuthenticated() ? <Home /> : <Navigate to="/login" />}
           />
 
           {/* 404 route */}

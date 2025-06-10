@@ -31,8 +31,8 @@ const Login = () => {
       console.log('Respons dari server:', response.data);
 
       if (response.data.success) {
-        localStorage.setItem('twitter-clone-token', response.data.token);
-        navigate('/feed');
+        localStorage.setItem('studenthub-token', response.data.token);
+        navigate('/home');
       } else {
         // Jika server mengirim respons sukses tapi dengan flag success: false
         setError(response.data.message || 'Terjadi kesalahan pada login');
@@ -43,7 +43,7 @@ const Login = () => {
       if (err.code === 'ECONNABORTED') {
         setError('Koneksi timeout. Server mungkin sedang down atau lambat.');
       } else if (!err.response) {
-        setError('Tidak dapat terhubung ke server. Pastikan server berjalan di http://localhost:5000');
+        setError('Tidak dapat terhubung ke server. Pastikan server berjalan di http://localhost:3000');
       } else {
         const errorMessage = err.response?.data?.error ||
           err.message ||
@@ -102,11 +102,10 @@ const Login = () => {
             type="submit"
             disabled={loading}
             className="w-full bg-custom-div text-white py-3 px-4 rounded-lg font-semibold
-                     hover:bg-blue-700 transition-colors disabled:bg-blue-300"
+                     hover:bg-blue-700 transition-colors disabled:bg-purple-100"
           >
             {loading ? (
               <div className="flex items-center justify-center gap-2">
-                <TailSpin color="#fff" height={20} width={20} />
                 Memproses...
               </div>
             ) : (
@@ -131,8 +130,8 @@ const Login = () => {
           </p>
         </div>
       </div>
-      <div className="absolute top-1/4 left-20 w-20 h-20 bg-custom-primary rounded-full blur-xl animate-bounce"></div>
-      <div className="absolute top-3/4 right-10 w-32 h-32 bg-custom-secondary from-pink-400/20 to-purple-500/20 rounded-full blur-xl animate-pulse"></div>
+      <div className="absolute top-3/4 left-20 w-20 h-20 bg-custom-primary rounded-full blur-xl animate-bounce"></div>
+      <div className="absolute top-1/4 right-10 w-32 h-32 bg-custom-secondary from-pink-400/20 to-purple-500/20 rounded-full blur-xl animate-pulse"></div>
 
     </div>
   );

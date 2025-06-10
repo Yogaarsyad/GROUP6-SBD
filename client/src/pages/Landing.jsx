@@ -89,7 +89,7 @@ function LandingPage() {
                         </div>
                     </div>
 
-                    <div className="border-t border-slate-700/50 mt-12 pt-8 text-center text-slate-400">
+                    <div className="border-t border-custom-div mt-12 pt-8 text-center text-slate-400">
                         <p>&copy; 2025 StudentHub. All rights reserved.</p>
                     </div>
                 </div>
